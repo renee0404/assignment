@@ -1,0 +1,31 @@
+def decimal_to_binary(decimal_num):
+    binary_num = ""
+    for i in range(7, -1, -1):
+        bit = (decimal_num >> i) & 1
+        binary_num += str(bit)
+    return binary_num
+
+def binary_to_hex(binary_num):
+    hex_digits = "0123456789ABCDEF"
+    hex_num = ""
+    for i in range(0, len(binary_num), 4):
+        decimal = 0
+        for j in range(4):
+            decimal = decimal * 2 + int(binary_num[i+j])
+        hex_num += hex_digits[decimal]
+    return hex_num
+
+def main():
+    decimal_input = int(input("請輸入一個十進位數字 (0-255): "))
+    if decimal_input < 0 or decimal_input > 255:
+        print("請輸入0到255之間的數字。")
+        return
+
+    binary_output = decimal_to_binary(decimal_input)
+    print("對應的二進位數字為:", binary_output)
+
+    hex_output = binary_to_hex(binary_output)
+    print("對應的十六進位數字為:", hex_output)
+
+if __name__ == "__main__":
+    main()
